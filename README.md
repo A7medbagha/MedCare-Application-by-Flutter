@@ -13,3 +13,7 @@
 ### - Notification Page: Provides important updates.
 ### - Feedback and Reach Us Page: Allows users to give feedback and contact support.
 ### - Admin Dashboard: Admins can manage and create patient accounts.
+
+![5](https://github.com/A7medbagha/MedCare-Application-by-Flutter/assets/100593082/4ada392d-4981-4887-a65d-75a5f47d1587)
+![6](https://github.com/A7medbagha/MedCare-Application-by-Flutter/assets/100593082/f94812c1-8c66-4a62-9316-9aa315659e47)
+![7](https://github.com/A7medbagha/MedCare-Application-by-Flutter/assets/100593082/b2f72248-0ccb-4da8-8269-a901fbb01464)
