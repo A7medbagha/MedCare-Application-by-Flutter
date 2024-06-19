@@ -1,0 +1,127 @@
+import 'package:flutter/material.dart';
+import 'package:hospitalapp/BMI/helper/imc_calculator.dart';
+import 'package:hospitalapp/BMI/screens/imc_screen.dart';
+
+class Result extends StatefulWidget {
+  Result({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<Result> createState() => _ResultState();
+}
+
+class _ResultState extends State<Result> {
+  bool isPressed = false;
+  ImcCalculator imc = ImcCalculator();
+
+  reseta() {
+    setPeso = 50;
+    setIdade = 20;
+    setAltura = 160;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    const backgroundColor = Colors.white;
+    return Scaffold(
+      backgroundColor: backgroundColor,
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(25.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Text(
+                'YOUR BMI:',
+                style: TextStyle(
+                    fontSize: 30,
+                    color: Colors.black87,
+                    fontWeight: FontWeight.bold),
+              ),
+              Text(
+                resultadoImc.toStringAsFixed(1),
+                style: const TextStyle(
+                    fontSize: 60,
+                    color: Colors.black87,
+                    fontWeight: FontWeight.bold),
+              ),
+              Text(
+                interpretacao,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 20, color: Colors.black),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Listener(
+                  onPointerUp: (_) {
+                    setState(() {
+                      reseta();
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ImcScreen(),
+                          ));
+                      isPressed = false;
+                    });
+                  },
+                  onPointerDown: (_) {
+                    setState(() {
+                      isPressed = true;
+                    });
+                  },
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 50),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        color: Colors.indigo,
+                        boxShadow: isPressed
+                            ? []
+                            : [
+                                const BoxShadow(
+                                  blurRadius: 10,
+                                  offset: Offset(-5, -5),
+                                  color: Colors.white,
+                                ),
+                                const BoxShadow(
+                                  blurRadius: 20,
+                                  offset: Offset(10, 10),
+                                  color: Color(0xFFA7A9AF),
+                                ),
+                              ]),
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: const [
+                          Text(
+                            'Re Calculate',
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 1.5,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Icon(
+                            Icons.restart_alt,
+                            color: Colors.white,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
